@@ -10,6 +10,12 @@ import UIKit
 
 class AnimalListTableViewCell: UITableViewCell {
 
+  
+  @IBOutlet weak var animalName: UILabel!
+  @IBOutlet weak var animalOrigin: UILabel!
+  @IBOutlet weak var animalImage: UIImageView!
+  
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -10,6 +10,14 @@ import UIKit
 
 class AnimalListTableViewController: UITableViewController {
 
+  var animals = ZooAnimal.zooAnimals
+  
+  let amphibians = ZooAnimal.amphibian
+  let birds = ZooAnimal.bird
+  let insects = ZooAnimal.insect
+  let mammals = ZooAnimal.mammal
+  let reptiles = ZooAnimal.reptile
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,25 +30,78 @@ class AnimalListTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+  
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 5
     }
 
+  
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+      switch section {
+      case 0:
+        return amphibians.count
+      case 1:
+        return birds.count
+      case 2:
+        return insects.count
+      case 3:
+        return mammals.count
+      case 4:
+        return reptiles.count
+      default:
         return 0
+      }
     }
 
-    /*
+  
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+      let animal = animals[indexPath.row]
+      if let cell = tableView.dequeueReusableCell(withIdentifier: "animalInfoCell", for: indexPath) as? AnimalListTableViewCell {
+        cell.animalName.text = animal.name
+          cell.animalOrigin.text = animal.origin
+          cell.animalImage.image = UIImage(named: String(animal.imageNumber))
+       
         return cell
+      }
+        return UITableViewCell()
     }
-    */
+  
+  
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    switch section{
+    case 0:
+      return "Amphibians"
+    case 1:
+      return "Birds"
+    case 2:
+      return "Insects"
+    case 3:
+      return "Mammals"
+    case 4:
+      return "Reptiles"
+    default:
+      return ""
+    }
+  }
+  
+  
+  
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 90
+  }
+  
+  
+  
+  
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+  }
+  
+  
+//  if let viewController = storyBoard.instantiateViewController(withIdentifier: XXXXX) as? XXXX
+  
 
     /*
     // Override to support conditional editing of the table view.
